@@ -1,14 +1,5 @@
 <template>
   <v-app id="inspire">
-
-    <v-app-bar
-        app
-        color="indigo"
-        dark
-    >
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
-
     <v-main>
       <v-container
           class="fill-height"
@@ -24,12 +15,6 @@
         </v-row>
       </v-container>
     </v-main>
-    <v-footer
-        color="indigo"
-        app
-    >
-      <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
 
     <v-dialog v-model="dialog" max-width="600">
       <v-card>
@@ -41,7 +26,7 @@
           <p>Tanlangan shifokor:</p>
           <p class="text-h4">{{ info.docSpec }}</p>
           <p>Vaqt:</p>
-          <p class="text-h4">{{ info.time }}</p>
+          <p class="text-h4">{{ new Date(info.time) }}</p>
         </v-card-text>
 
         <v-card-actions>

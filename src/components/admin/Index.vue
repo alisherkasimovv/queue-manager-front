@@ -44,7 +44,7 @@
           <v-card-actions>
             <v-btn text color="orange" @click="doctor = null">Bekor qilish</v-btn>
             <v-spacer></v-spacer>
-            <v-btn text color="red">
+            <v-btn text color="red" @click="deleteDoctor(doctor.id)">
               <v-icon left>mdi-delete-empty</v-icon>
               O'chirish
             </v-btn>
@@ -79,6 +79,13 @@
     methods: {
       selectOne: function (item) {
         this.doctor = item;
+      },
+      deleteDoctor: function (id) {
+        axios.get("http://localhost:9090/doctor/delete/" + id)
+        .then(response => {
+          console.log(response);
+          this.$router.go();
+        });
       }
     }
   };
