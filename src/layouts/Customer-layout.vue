@@ -85,6 +85,10 @@ import logo from  '~@/../src/img/logo.jpg'
           }
           this.dialog = true;
         });
+
+        this.dialog = setInterval(() => {
+          this.dialog = false;
+        }, 3000);
       },
       getNow: function () {
         const today = new Date();
