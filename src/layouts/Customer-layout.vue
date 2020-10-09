@@ -14,13 +14,25 @@ import logo from  '~@/../src/img/logo.jpg'
         <v-row
             justify="center"
         >
-            <v-card v-for="item in doctorList" :key="item.id" outlined class="ma-3 doctor__card" min-width="15%" @click="queue(item.id)" elevation="4">
+            <v-card v-for="item in pageOfItems" :key="item.id" outlined class="ma-3 doctor__card" min-width="15%" @click="queue(item.id)" elevation="4">
               <v-card-title class="text-h3">{{ item.specialization }}</v-card-title>
               <!--- <v-card-text>{{ item.description }}</v-card-text>-->
             </v-card>
         </v-row>
       </v-container>
     </v-main>
+
+    <v-footer
+        absolute
+        class="font-weight-medium"
+    >
+      <v-col
+          class="text-center"
+          cols="12"
+      >
+        <jw-pagination :items="doctorList" @changePage="onChangePage"></jw-pagination>
+      </v-col>
+    </v-footer>
 
     <v-dialog v-model="dialog" max-width="600">
       <v-card>
@@ -56,6 +68,7 @@ import logo from  '~@/../src/img/logo.jpg'
     name: 'Customer',
     data() {
       return {
+        pageOfItems: [],
         doctorList: [],
         info: {
           docSpec: '',
@@ -96,6 +109,10 @@ import logo from  '~@/../src/img/logo.jpg'
         const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         this.date = date;
         this.time = time;
+      },
+      onChangePage(pageOfItems) {
+        // update page of items
+        this.pageOfItems = pageOfItems;
       }
     }
 
